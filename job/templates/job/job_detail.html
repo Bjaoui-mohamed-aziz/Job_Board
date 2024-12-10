@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block body %}
+
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -52,8 +54,13 @@
                     </div>
                     <div class="apply_job_form white-bg">
                         <h4>Apply for the job</h4>
-                        <form action="#" method="post">
-                          {{form}}
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% bootstrap_form form1 %}
+                            {% buttons %}
+                            <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+
+                            {% endbuttons %}
                         </form>
                     </div>
                 </div>
@@ -119,4 +126,3 @@
     {% endblock body %}
 
 
-    <button class="boxed-btn3 w-100" type="submit">Apply Now</button>

@@ -19,12 +19,16 @@ def job_list(request):
 def job_detail(request, slug):
     job_detail = Job.objects.get(slug=slug)
 
-    if request.method =='POST':
-     pass
-
+    if request.method=='POST':
+       form = ApplyForm(request.POST, request.FILES)
+       if form.is_valid():
+           myform = form.save(commit=False)
+           myform.job = job_detail
+           myform.save()
+           print('done')   
     else:
        form = ApplyForm()
 
 
-    context = {'job': job_detail, 'form': form}
+    context = {'job': job_detail, 'form1': form}
     return render (request,'job/job_detail.html',context)
