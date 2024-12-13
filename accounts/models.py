@@ -12,7 +12,7 @@ class Profile(models.Model):
     image = models.ImageField(upload_to='profile/')
 
     def __str__(self):
-            return self.user
+            return self.user.username
 
 
 @receiver(post_save, sender=User)
@@ -24,3 +24,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class City(models.Model):
     name = models.CharField(max_length=30)
+
+
+
+    def __str__(self):
+            return self.name
